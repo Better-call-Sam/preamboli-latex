@@ -1,0 +1,194 @@
+
+% ==========================================
+% 1. FONTS, LINGUA E FORMATTAZIONE BASE
+% ==========================================
+\usepackage[T1]{fontenc}
+\renewcommand*\familydefault{\sfdefault} % Font sans-serif
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{relsize}
+
+% ==========================================
+% 2. MATEMATICA E SIMBOLI
+% ==========================================
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{upgreek}
+\usepackage{nicefrac}
+\usepackage{cancel}
+\usepackage{wasysym}
+\usepackage{pifont}
+\usepackage{bm}
+
+% ==========================================
+% UNITÀ DI MISURA
+% ==========================================
+\usepackage{siunitx}
+
+% ==========================================
+% 4. COLORI E GRAFICA
+% ==========================================
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{graphicx}
+\usepackage{svg}
+\usepackage{tikz}
+\usetikzlibrary{quotes,angles}
+\usepackage{circuitikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{wrapfig}
+\usepackage{tcolorbox}
+\usepackage{rotating}
+
+% ==========================================
+% 5. TABELLE ED ELENCHI
+% ==========================================
+\usepackage{tabularx, tabularray, longtable, array, booktabs, multirow}
+\usepackage{enumitem}
+
+% ==========================================
+% 6. GEOMETRIA PAGINA E SPAZIATURE
+% ==========================================
+\usepackage{geometry}
+\geometry{
+    top=1cm,
+    bottom=1.5cm,
+    left=1cm,
+    right=1cm
+}
+\usepackage{afterpage}
+\usepackage{float}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\flushbottom
+
+% Controllo vedove e orfani
+\widowpenalty=100    
+\clubpenalty=100     
+
+% ==========================================
+% 7. DATE E DIDASCALIE
+% ==========================================
+\usepackage[style=ddmmyyyy]{datetime2}
+\DTMsetup{datesep=/}
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty} % Rimuove "Figure n:"
+
+% ==========================================
+% 8. NOTE A PIÈ DI PAGINA
+% ==========================================
+\usepackage[para,splitrule,bottom]{footmisc}
+\renewcommand{\footnotesize}{\scriptsize} 
+\setlength{\skip\footins}{3pt plus 2pt minus 1pt} 
+\setlength{\footnotesep}{0.1em}   
+
+% ==========================================
+% 9. GESTIONE TITOLI E GERARCHIA VISIVA
+% ==========================================
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tocloft}
+\usepackage{titleref}
+
+% Definizioni Colori Standard e Titoli
+\definecolor{myred}{rgb}{0.7,0.1,0.1} % Rosso principale (\section)
+\definecolor{cobalto}{RGB}{0, 71, 171} % Blu elettrico saturo (\subsection)
+\definecolor{verdone}{RGB}{0, 120, 50} % Verde scuro e saturo, zero rosso (\subsubsection)
+
+\definecolor{CadetBlue}{RGB}{95,158,160}
+\definecolor{azzurrocurve}{RGB}{116,159,211}
+\definecolor{verdecurve}{RGB}{79,126,58}
+\definecolor{rossocurve}{RGB}{214,32,45}
+\definecolor{giallocurve}{RGB}{224,154,74}
+\definecolor{gialloevidenziatore}{RGB}{223,255,0}
+\definecolor{grigino}{gray}{0.35} 
+
+% \section: Enorme, rosso, con linea separatrice sotto
+\titleformat{\section}[hang]
+  {\Huge\bfseries\color{myred}}
+  {\thesection}{1em}{}
+  [\vspace{-0.5ex}\rule{\textwidth}{0.8pt}]
+\titlespacing*{\section}{0pt}{4ex plus 1ex minus .2ex}{2.5ex plus .2ex}
+
+% \subsection: Molto grande, cobalto scuro e saturo
+\titleformat{\subsection}[hang]
+  {\LARGE\bfseries\color{cobalto}}
+  {\thesubsection}{0.8em}{}
+\titlespacing*{\subsection}{0pt}{3.5ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% \subsubsection: Grande, verdone scuro (stacco netto da rosso e blu)
+\titleformat{\subsubsection}[hang]
+  {\Large\bfseries\color{verdone}}
+  {\thesubsubsection}{0.8em}{}
+\titlespacing*{\subsubsection}{0pt}{2.5ex plus 1ex minus .2ex}{1ex plus .2ex}
+
+% \paragraph: Evidenziato, grigio scuro, a capo
+\titleformat{\paragraph}[hang]
+  {\large\bfseries\color{darkgray}}
+  {\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{2ex plus 0.5ex minus .2ex}{0.5ex plus .2ex}
+
+
+% ── profondità indice e numerazione ──────
+\setcounter{tocdepth}{5}     % mostra \paragraph nell'indice
+\setcounter{secnumdepth}{5}  % numera \paragraph nel testo
+
+
+% ==========================================
+% 10. MACRO E AMBIENTI PERSONALIZZATI
+% ==========================================
+\newcommand{\pro}{{\textcolor{ForestGreen}{\textbf{V}}}: }
+\newcommand{\contro}{{\textcolor{red}{\textbf{X}}}: }
+\newcommand{\fd}{\ensuremath{ \rightarrow }}   % freccia a destra
+\newcommand{\fs}{\ensuremath{ \leftarrow }}   % freccia sinistra
+\newcommand{\fds}{\ensuremath{ \leftrightarrow }} % freccia destra e sinistra
+\newcommand{\fdn}{\ensuremath{ \not\rightarrow }}   % freccia destra negata
+\newcommand{\fsn}{\ensuremath{ \not\leftarrow }}   % freccia sinistra negata
+\newcommand{\mq}{\ifmmode \text{m}^2 \else m$^2$ \fi} 
+\newcommand{\mc}{\ifmmode \text{m}^3 \else m$^3$ \fi} 
+\newcommand{\s}{\ifmmode \text{s}\else s\fi} 
+\newcommand{\mezzo}{\ifmmode \frac{1}{2} \else $\frac{1}{2}$\fi} 
+\newcommand{\medsize}{\fontsize{12}{14}\selectfont}
+\newcommand{\patm}{\ifmmode p_{\text{atm}} \else $p_{\text{atm}}$ \fi} 
+\newcommand{\diam}{\ifmmode \diameter \else $\diameter$ \fi} 
+\newcommand{\perpendicolare}{\ifmmode \perp \else $\perp$ \fi} 
+\newcommand{\Emec}{\ifmmode E_{\text{mec}} \else $E_{\text{mec}}$ \fi} 
+\newcommand{\Eth}{\ifmmode E_{\text{th}} \else $E_{\text{th}}$ \fi} 
+\newcommand{\romboelenco}{\textcolor{RubineRed}{\(\;\){\textbf{\ding{117}}}\(\;\)}} 
+\newcommand{\evidenzia}[1]{\colorbox{gialloevidenziatore}{\hspace{-0.1em}#1\hspace{-0.1em}}}
+
+\newcommand{\itsmall}[1]{%
+  \ifmmode \text{\textcolor{grigino}{\textit{\smaller({#1})}}}%
+  \else \textcolor{grigino}{\textit{\smaller({#1})}} \fi}
+
+% Elenchi ottimizzati
+\newcounter{puntidepth}
+\setcounter{puntidepth}{0}
+
+\newenvironment{punti}{%
+  \stepcounter{puntidepth}%
+  \ifnum\value{puntidepth}=1 \def\puntilab{{\large\textbf{-}}}%
+  \else\ifnum\value{puntidepth}=2 \def\puntilab{\raisebox{0.25ex}{\scalebox{0.6}{$\blacktriangleright$}}}%
+  \else\ifnum\value{puntidepth}=3 \def\puntilab{$\vcenter{\hbox{\scalebox{0.8}{$\bullet$}}}$}%
+  \else \def\puntilab{\raisebox{0.1ex}{\scalebox{0.6}{$\triangleright$}}}%
+  \fi\fi\fi
+  \begin{itemize}[leftmargin=1.5em, labelsep=0.3em, itemsep=-0.35em, label=\puntilab]%
+}{%
+  \end{itemize}%
+  \addtocounter{puntidepth}{-1}%
+}
+
+
+
+
+\newenvironment{numeri}{\begin{enumerate}[leftmargin=1.5em, labelsep=0.3em, itemsep=-0.35em, label=\arabic*)]}{\end{enumerate}}
+
+% ==========================================
+% 11. HYPERREF (SEMPRE PER ULTIMO)
+% ==========================================
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black, % Colore dei link interni
+    urlcolor=blue,   % Colore dei link esterni
+    citecolor=black  % Colore delle citazioni
+}

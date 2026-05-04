@@ -1,0 +1,34 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.xdv
+*.dvi
+*.synctex(busy)
+
+# Local/editor scratch
+.codex_tmp/
+.vscode/.ropeproject/
+*.tmp
+
+# Private quiz/admin export files
+**/*NON_INVIARE*/
+*.quizrenew.json
