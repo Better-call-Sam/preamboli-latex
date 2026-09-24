@@ -4,6 +4,7 @@
 % ==========================================
 \usepackage[T1]{fontenc}
 \renewcommand*\familydefault{\sfdefault} % Font sans-serif
+\usepackage[italian]{babel}
 \usepackage{setspace}
 \usepackage{multicol}
 \usepackage{relsize}
@@ -154,7 +155,7 @@
 % 2. Gerarchia visiva: Section (Enorme)
 \renewcommand{\cftsecfont}{\Large\bfseries}
 \renewcommand{\cftsecpagefont}{\Large\bfseries}
-\setlength{\cftbeforesecskip}{2ex} % Spazio extra prima delle sezioni
+\setlength{\cftbeforesecskip}{1.5ex} % Spazio extra prima delle sezioni
 
 % 3. Gerarchia visiva: Subsection (Eredita la vecchia section)
 \renewcommand{\cftsubsecfont}{\Large\bfseries}
@@ -166,9 +167,9 @@
 \setlength{\cftbeforesubsecskip}{1ex} % Spazio extra prima delle sottosottosezioni
 
 % 5. Compensazione larghezza numeri (Evita che "1.1.2.1" si sovrapponga al testo)
-\setlength{\cftsecnumwidth}{2.5em}
-\setlength{\cftsubsecnumwidth}{3.2em}
-\setlength{\cftsubsubsecnumwidth}{4.2em}
+\setlength{\cftsecnumwidth}{3.25em}
+\setlength{\cftsubsecnumwidth}{4em}
+\setlength{\cftsubsubsecnumwidth}{5em}
 
 
 % ==========================================
@@ -198,6 +199,14 @@
 \newcommand{\Emec}{\ifmmode E_{\text{mec}} \else $E_{\text{mec}}$ \fi} 
 \newcommand{\Eth}{\ifmmode E_{\text{th}} \else $E_{\text{th}}$ \fi} 
 \newcommand{\pompaprot}{\ifmmode H^+-\textnormal{-ATPasi} \else $H^+$-ATPasi \fi} 
+\newcommand{\pw}{\ifmmode \Psi_w \else $\Psi_w$ \fi} %potenziale idrico 
+\newcommand{\ps}{\ifmmode \Psi_s \else $\Psi_s$ \fi}
+\newcommand{\pp}{\ifmmode \Psi_p \else $\Psi_p$ \fi}  
+
+
+\newcommand{\gramp}{\ifmmode \textnormal{GRAM}^+ \else GRAM$^+$ \fi}
+\newcommand{\gramm}{\ifmmode \textnormal{GRAM}^- \else GRAM$^-$ \fi} 
+
 
 
 
@@ -214,6 +223,7 @@
   \else \textcolor{grigino}{\textit{\smaller({#1})}} \fi}
 
 \newcommand{\cobalto} [1] {\textcolor {cobalto}{#1}}
+\newcommand{\verdone} [1] {\textcolor {verdone}{#1}}
 
 % Elenchi ottimizzati
 \newcounter{puntidepth}
@@ -311,4 +321,26 @@
     linkcolor=black, % Colore dei link interni
     urlcolor=blue,   % Colore dei link esterni
     citecolor=black  % Colore delle citazioni
+}
+
+% Indice con le voci di \section interamente in cobalto.
+% L'argomento opzionale regola la larghezza riservata al numero di sezione.
+\newcommand{\indicecobalto}[1][3em]{%
+  \begingroup
+    \setlength{\cftsecnumwidth}{#1}%
+    \renewcommand{\cftsecfont}{\color{cobalto}\Large\bfseries}%
+    \renewcommand{\cftsecpagefont}{\color{cobalto}\Large\bfseries}%
+    \renewcommand{\cftsecleader}{\color{cobalto}\cftdotfill{\cftdotsep}}%
+    % Mantiene cliccabili le voci e colora solo i link delle \section.
+    \let\indiceorigcontentsline\contentsline
+    \def\contentsline##1##2##3##4{%
+      \begingroup
+        \ifstrequal{##1}{section}%
+          {\hypersetup{linkcolor=cobalto}}%
+          {\hypersetup{linkcolor=black}}%
+        \indiceorigcontentsline{##1}{##2}{##3}{##4}%
+      \endgroup
+    }%
+    \tableofcontents
+  \endgroup
 }
